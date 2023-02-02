@@ -11,7 +11,7 @@ class AlunoSerializer(serializers.ModelSerializer):
 class CursoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Curso
-        fields = '__all__'
+        fields = ['codigo_curso', 'descricao', 'nivel']
 
 
 class MatriculaSerializer(serializers.ModelSerializer):
