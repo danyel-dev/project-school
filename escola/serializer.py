@@ -7,6 +7,7 @@ class MatriculaSerializer(serializers.HyperlinkedModelSerializer):
     aluno = serializers.ReadOnlyField(source='aluno.nome')
     periodo = serializers.SerializerMethodField()
 
+
     class Meta:
         model = Matricula
         fields = ['id', 'url', 'aluno', 'curso', 'periodo']
