@@ -2,7 +2,7 @@ from rest_framework import serializers
 from escola.models import Aluno, Curso, Matricula
 
 
-class MatriculaSerializer(serializers.ModelSerializer):
+class MatriculaSerializer(serializers.HyperlinkedModelSerializer):
     curso = serializers.ReadOnlyField(source='curso.descricao')
     aluno = serializers.ReadOnlyField(source='aluno.nome')
     periodo = serializers.SerializerMethodField()
@@ -23,7 +23,7 @@ class AlunoSerializer(serializers.ModelSerializer):
         fields = ['id', 'url', 'nome', 'rg', 'cpf', 'data_nascimento', 'matricula_set']
 
 
-class AlunoSerializerV2(serializers.ModelSerializer):
+class AlunoSerializerV2(serializers.HyperlinkedModelSerializer):
     matricula_set = MatriculaSerializer(many = True)
 
     class Meta:
@@ -31,7 +31,7 @@ class AlunoSerializerV2(serializers.ModelSerializer):
         fields = ['id', 'url', 'nome', 'rg', 'cpf', 'celular', 'data_nascimento', 'matricula_set']
 
 
-class CursoSerializer(serializers.ModelSerializer):
+class CursoSerializer(serializers.HyperlinkedModelSerializer):
     matricula_set = MatriculaSerializer(many = True)
 
     class Meta:
